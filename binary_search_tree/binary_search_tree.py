@@ -169,10 +169,11 @@ bst.insert(2)
 bst.bft_print(bst)
 bst.dft_print(bst)
 
+
 print("elegant methods")
 print("pre order")
-# bst.pre_order_dft()
+# bst.pre_order_dft(bst)
 print("in order")
-# bst.in_order_dft()
+# bst.in_order_dft(bst)
 print("post order")
 # bst.post_order_dft()
