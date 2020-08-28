@@ -11,6 +11,7 @@ class Node:
     def set_next(self, new_next):
         # set this node's next_node reference to the passed in node
         self.next_node = new_next
+        
 class LinkedList:
     def __init__(self):
         self.head: Node = None  # points to the first node in the list

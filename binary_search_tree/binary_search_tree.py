@@ -12,6 +12,8 @@ This part of the project comprises two days:
 
 from collections import deque
 from stack import Stack
+
+
 class BSTNode:
     def __init__(self, value):
         self.value = value
@@ -53,7 +55,7 @@ class BSTNode:
     def contains(self, target):
         # Contains:
         # Compare target value to node.value
-        if target == node.value:
+        if target == self.value:
             return True
         if target >= self.value:
             if self.right:
@@ -98,37 +100,38 @@ class BSTNode:
     # Print all the values in order from low to high
     # Hint:  Use a recursive, depth first traversal
     def in_order_print(self, node):
-        if self.left is not None:
-            self.left.in_order_print()
+        if self.left:
+            self.left.in_order_print(node)
         print(self.value)
-        if self.right is None:
-            self.right.in_order_print()    
-
+        if self.right:
+            self.right.in_order_print(node)
 
     # Print the value of every node, starting with the given node,
     # in an iterative breadth first traversal
-    def bft_print(self, fn):
-        from collections import deque
+
+    def bft_print(self, node):
         queue = deque()
-        queue.append(self)
-        
+        queue.append(node)
+
         while len(queue) > 0:
 
             cur_node = queue.popleft()
-            fn(cur_node.value)
+            
 
             if cur_node.left:
                 queue.append(cur_node.left)
             if cur_node.right:
-                queue.append(cur_node.right)    
-        
-
+                queue.append(cur_node.right)
+            print(cur_node.value)
 
     # Print the value of every node, starting with the given node,
     # in an iterative depth first traversal
-    def dft_print(self):
+
+    def dft_print(self, node):
+
         stack = Stack()
-        current_node = stack.push(self)
+        current_node = stack.push(node)
+        
         while stack.size > 0:
             current_node = stack.pop()
 
@@ -149,6 +152,7 @@ class BSTNode:
     # def post_order_dft(self):
     #     pass
 
+
 """
 This code is necessary for testing the `print` methods
 """
@@ -162,8 +166,8 @@ bst.insert(3)
 bst.insert(4)
 bst.insert(2)
 
-bst.bft_print()
-bst.dft_print()
+bst.bft_print(bst)
+bst.dft_print(bst)
 
 print("elegant methods")
 print("pre order")
@@ -171,4 +175,4 @@ print("pre order")
 print("in order")
 # bst.in_order_dft()
 print("post order")
-# bst.post_order_dft()  
+# bst.post_order_dft()
